@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   SafeAreaView,
@@ -9,13 +10,15 @@ import {
 } from 'react-native';
 
 function SignUp(): React.JSX.Element {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headingSection}>
-        <Text> Habitracker Login</Text>
+        <Text>Habitracker SignUp</Text>
       </View>
       <View style={styles.inputView}>
         <Text>Enter Email</Text>
@@ -31,7 +34,12 @@ function SignUp(): React.JSX.Element {
         />
       </View>
       <TouchableOpacity style={styles.loginButtonStyle}>
-        <Text>Login</Text>
+        <Text>Register</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.loginRegisterSection}
+        onPress={() => navigation.navigate('Login')}>
+        <Text>Already have an account? Login</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -43,7 +51,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#e7c6ff',
+    backgroundColor: '#c8b6ff',
   },
   input: {
     height: 40,
@@ -62,11 +70,14 @@ const styles = StyleSheet.create({
   },
   loginButtonStyle: {
     marginTop: 20,
-    backgroundColor: '#ffd6ff',
+    backgroundColor: '#b8c0ff',
     padding: 20,
     minWidth: 100,
     borderRadius: 12,
     display: 'flex',
     alignItems: 'center',
+  },
+  loginRegisterSection: {
+    marginTop: 10,
   },
 });

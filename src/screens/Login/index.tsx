@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   SafeAreaView,
@@ -9,6 +10,8 @@ import {
 } from 'react-native';
 
 function Login(): React.JSX.Element {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,6 +36,11 @@ function Login(): React.JSX.Element {
       <TouchableOpacity style={styles.loginButtonStyle}>
         <Text>Login</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.loginRegisterSection}
+        onPress={() => navigation.navigate('SignUp')}>
+        <Text>Yet to Register? SignUp</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -43,7 +51,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#e7c6ff',
+    backgroundColor: '#c8b6ff',
   },
   input: {
     height: 40,
@@ -62,11 +70,14 @@ const styles = StyleSheet.create({
   },
   loginButtonStyle: {
     marginTop: 20,
-    backgroundColor: '#ffd6ff',
+    backgroundColor: '#b8c0ff',
     padding: 20,
     minWidth: 100,
     borderRadius: 12,
     display: 'flex',
     alignItems: 'center',
+  },
+  loginRegisterSection: {
+    marginTop: 10,
   },
 });
