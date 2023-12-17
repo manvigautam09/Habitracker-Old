@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#c8b6ff',
+    backgroundColor: '#C8B6FF',
   },
   input: {
     height: 40,
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   loginButtonStyle: {
     marginTop: 20,
-    backgroundColor: '#b8c0ff',
+    backgroundColor: '#E7C6FF',
     padding: 20,
     minWidth: 100,
     borderRadius: 12,
