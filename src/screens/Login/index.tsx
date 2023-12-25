@@ -1,25 +1,21 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import LoginRegisterContainer from '../../components/LoginRegisterContainer';
 
 function Login(): React.JSX.Element {
   const navigation = useNavigation();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.headingSection}>
-        <Text> Habitracker Login</Text>
-      </View>
+    <LoginRegisterContainer title="Habitracker Login">
       <View style={styles.inputView}>
         <Text>Enter Email</Text>
         <TextInput value={email} onChangeText={setEmail} style={styles.input} />
@@ -36,23 +32,19 @@ function Login(): React.JSX.Element {
       <TouchableOpacity style={styles.loginButtonStyle}>
         <Text>Login</Text>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.loginRegisterSection}
         onPress={() => navigation.navigate('SignUp')}>
         <Text>Yet to Register? SignUp</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </LoginRegisterContainer>
   );
 }
 
 export default Login;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#C8B6FF',
-  },
   input: {
     height: 40,
     margin: 12,
@@ -60,10 +52,6 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 300,
     borderRadius: 7,
-  },
-  headingSection: {
-    marginTop: 60,
-    marginBottom: 20,
   },
   inputView: {
     marginTop: 20,

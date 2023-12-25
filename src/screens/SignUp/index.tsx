@@ -1,13 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import LoginRegisterContainer from '../../components/LoginRegisterContainer';
 
 function SignUp(): React.JSX.Element {
   const navigation = useNavigation();
@@ -16,10 +16,7 @@ function SignUp(): React.JSX.Element {
   const [password, setPassword] = useState('');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.headingSection}>
-        <Text>Habitracker SignUp</Text>
-      </View>
+    <LoginRegisterContainer title="Habitracker SignUp">
       <View style={styles.inputView}>
         <Text>Enter Email</Text>
         <TextInput value={email} onChangeText={setEmail} style={styles.input} />
@@ -41,18 +38,13 @@ function SignUp(): React.JSX.Element {
         onPress={() => navigation.navigate('Login')}>
         <Text>Already have an account? Login</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </LoginRegisterContainer>
   );
 }
 
 export default SignUp;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#c8b6ff',
-  },
   input: {
     height: 40,
     margin: 12,
@@ -60,10 +52,6 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 300,
     borderRadius: 7,
-  },
-  headingSection: {
-    marginTop: 60,
-    marginBottom: 20,
   },
   inputView: {
     marginTop: 20,

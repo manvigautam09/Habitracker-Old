@@ -15,7 +15,7 @@ function App(): React.JSX.Element {
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Home"
+          initialRouteName="Login"
           screenOptions={{headerShown: false}}>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
