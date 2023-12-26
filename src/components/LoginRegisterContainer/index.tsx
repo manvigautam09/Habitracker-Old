@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {
   ImageBackground,
   KeyboardAvoidingView,
@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 interface LoginRegisterContainer {
-  children: Element[];
+  children: ReactNode;
   title: string;
 }
 
