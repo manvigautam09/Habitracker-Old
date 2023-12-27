@@ -4,10 +4,10 @@ import {
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
-  Text,
   View,
   StyleSheet,
 } from 'react-native';
+import {Text} from 'react-native-paper';
 
 interface LoginRegisterContainer {
   children: ReactNode;
@@ -28,7 +28,9 @@ function LoginRegisterContainer({
           style={styles.keyboardContainer}
           keyboardVerticalOffset={Platform.OS === 'ios' ? 20 : 40}>
           <View style={styles.headingSection}>
-            <Text style={styles.title}> {title}</Text>
+            <Text variant="displayLarge" style={styles.title}>
+              {title}
+            </Text>
           </View>
           {children}
         </KeyboardAvoidingView>

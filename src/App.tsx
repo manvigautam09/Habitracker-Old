@@ -1,18 +1,42 @@
 import React from 'react';
-import {PaperProvider, MD3DarkTheme} from 'react-native-paper';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  PaperProvider,
+  MD3DarkTheme,
+  adaptNavigationTheme,
+} from 'react-native-paper';
+import {
+  NavigationContainer,
+  DarkTheme as NavigationDarkTheme,
+  DefaultTheme as NavigationDefaultTheme,
+} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Home from './screens/Home';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
+import {fonts} from './utils/font-config';
+import {generatedDarkScheme} from './utils/color-scheme';
+
+const {DarkTheme} = adaptNavigationTheme({
+  reactNavigationLight: NavigationDefaultTheme,
+  reactNavigationDark: NavigationDarkTheme,
+});
+const queryClient = new QueryClient();
+
+const theme = {
+  ...MD3DarkTheme,
+  ...DarkTheme,
+  fonts: fonts,
+  colors: {
+    ...MD3DarkTheme.colors,
+    ...DarkTheme.colors,
+    ...generatedDarkScheme.colors,
+  },
+};
 
 function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
-  const queryClient = new QueryClient();
-
-  const theme = {...MD3DarkTheme};
 
   return (
     <QueryClientProvider client={queryClient}>
