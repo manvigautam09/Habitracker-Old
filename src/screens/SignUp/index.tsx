@@ -1,43 +1,58 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Button} from 'react-native-paper';
+import {StyleSheet, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+
+import CustomTextInput from '../../components/CustomTextInput';
 import LoginRegisterContainer from '../../components/LoginRegisterContainer';
 
 function SignUp(): React.JSX.Element {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <LoginRegisterContainer title="Habitracker SignUp">
       <View style={styles.inputView}>
-        <Text>Enter Email</Text>
-        <TextInput value={email} onChangeText={setEmail} style={styles.input} />
+        <CustomTextInput
+          label="Enter Name"
+          value={name}
+          onChangeText={setName}
+        />
       </View>
       <View style={styles.inputView}>
-        <Text>Enter Password</Text>
-        <TextInput
+        <CustomTextInput
+          value={email}
+          label="Enter Email"
+          onChangeText={setEmail}
+        />
+      </View>
+      <View style={styles.inputView}>
+        <CustomTextInput
+          value={username}
+          label="Enter Username"
+          onChangeText={setUsername}
+        />
+      </View>
+      <View style={styles.inputView}>
+        <CustomTextInput
           value={password}
+          label="Enter Password"
           onChangeText={setPassword}
-          style={styles.input}
           secureTextEntry
         />
       </View>
-      <TouchableOpacity style={styles.loginButtonStyle}>
-        <Text>Register</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
+      <Button mode="contained" style={styles.loginButtonStyle}>
+        Register
+      </Button>
+      <Button
         style={styles.loginRegisterSection}
         onPress={() => navigation.navigate('Login')}>
-        <Text>Already have an account? Login</Text>
-      </TouchableOpacity>
+        Already have an account? Login
+      </Button>
     </LoginRegisterContainer>
   );
 }
@@ -45,25 +60,11 @@ function SignUp(): React.JSX.Element {
 export default SignUp;
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    width: 300,
-    borderRadius: 7,
-  },
   inputView: {
-    marginTop: 20,
+    marginTop: 10,
   },
   loginButtonStyle: {
     marginTop: 20,
-    backgroundColor: '#E7C6FF',
-    padding: 20,
-    minWidth: 100,
-    borderRadius: 12,
-    display: 'flex',
-    alignItems: 'center',
   },
   loginRegisterSection: {
     marginTop: 10,

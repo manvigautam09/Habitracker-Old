@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   View,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import {Text} from 'react-native-paper';
 
@@ -22,19 +23,21 @@ function LoginRegisterContainer({
     <ImageBackground
       source={require('../../assets/images/bg-light.png')}
       style={styles.image}>
-      <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView
-          behavior="position"
-          style={styles.keyboardContainer}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 20 : 40}>
-          <View style={styles.headingSection}>
-            <Text variant="displayLarge" style={styles.title}>
-              {title}
-            </Text>
-          </View>
-          {children}
-        </KeyboardAvoidingView>
-      </SafeAreaView>
+      <ScrollView>
+        <SafeAreaView style={styles.container}>
+          <KeyboardAvoidingView
+            behavior="position"
+            style={styles.keyboardContainer}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 20 : 40}>
+            <View style={styles.headingSection}>
+              <Text variant="displayLarge" style={styles.title}>
+                {title}
+              </Text>
+            </View>
+            {children}
+          </KeyboardAvoidingView>
+        </SafeAreaView>
+      </ScrollView>
     </ImageBackground>
   );
 }
