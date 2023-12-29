@@ -1,35 +1,81 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
-import {Button} from 'react-native-paper';
+import React from 'react';
+import {Button, Text} from 'react-native-paper';
 import {StyleSheet, View} from 'react-native';
+import {useForm, Controller} from 'react-hook-form';
+import {useNavigation} from '@react-navigation/native';
 
 import CustomTextInput from '../../components/CustomTextInput';
 import LoginRegisterContainer from '../../components/LoginRegisterContainer';
 
 function Login(): React.JSX.Element {
   const navigation = useNavigation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+
+  const onSubmit = (data: any) => {
+    console.log('### data', data);
+  };
 
   return (
     <LoginRegisterContainer title="Habitracker Login">
       <View style={styles.inputView}>
-        <CustomTextInput
-          value={email}
-          onChangeText={setEmail}
-          label="Enter Email"
+        <Controller
+          control={control}
+          rules={{
+            required: 'Email is required',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'Invalid email address',
+            },
+          }}
+          render={({field}) => (
+            <CustomTextInput
+              value={field.value}
+              onChangeText={field.onChange}
+              label="Enter Email"
+              error={!!errors.email?.message}
+            />
+          )}
+          name="email"
         />
+        {errors.email?.message ? (
+          <Text>{errors.email?.message.toString()}</Text>
+        ) : null}
       </View>
       <View style={styles.inputView}>
-        <CustomTextInput
-          label="Enter Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
+        <Controller
+          control={control}
+          rules={{
+            required: 'Password is required',
+            minLength: {
+              value: 6,
+              message: 'Password must be at least 6 characters long',
+            },
+          }}
+          render={({field}) => (
+            <CustomTextInput
+              label="Enter Password"
+              value={field.value}
+              onChangeText={field.onChange}
+              secureTextEntry
+              error={!!errors.password?.message}
+            />
+          )}
+          name="password"
         />
+        {errors.password?.message ? (
+          <Text>{errors.password?.message.toString()}</Text>
+        ) : null}
       </View>
 
-      <Button mode="contained" style={styles.loginButtonStyle}>
+      <Button
+        mode="contained"
+        style={styles.loginButtonStyle}
+        onPress={handleSubmit(onSubmit)}>
         Login
       </Button>
       <Button
@@ -40,7 +86,6 @@ function Login(): React.JSX.Element {
     </LoginRegisterContainer>
   );
 }
-
 export default Login;
 
 const styles = StyleSheet.create({
