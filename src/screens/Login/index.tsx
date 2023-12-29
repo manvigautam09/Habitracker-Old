@@ -4,6 +4,10 @@ import {StyleSheet, View} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 
+import {
+  emailValidationRules,
+  passwordValidationRules,
+} from '../../utils/validation-rules';
 import CustomTextInput from '../../components/CustomTextInput';
 import LoginRegisterContainer from '../../components/LoginRegisterContainer';
 
@@ -25,13 +29,7 @@ function Login(): React.JSX.Element {
       <View style={styles.inputView}>
         <Controller
           control={control}
-          rules={{
-            required: 'Email is required',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Invalid email address',
-            },
-          }}
+          rules={emailValidationRules}
           render={({field}) => (
             <CustomTextInput
               value={field.value}
@@ -47,13 +45,7 @@ function Login(): React.JSX.Element {
       <View style={styles.inputView}>
         <Controller
           control={control}
-          rules={{
-            required: 'Password is required',
-            minLength: {
-              value: 6,
-              message: 'Password must be at least 6 characters long',
-            },
-          }}
+          rules={passwordValidationRules}
           render={({field}) => (
             <CustomTextInput
               label="Enter Password"
