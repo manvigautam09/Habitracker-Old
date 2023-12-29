@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Text} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
@@ -42,13 +42,11 @@ function SignUp(): React.JSX.Element {
               label="Enter Name"
               onChangeText={onChange}
               error={!!errors.name?.message}
+              errorMsg={errors.name?.message?.toString() ?? ''}
             />
           )}
           name="name"
         />
-        {errors.name?.message ? (
-          <Text>{errors.name?.message.toString()}</Text>
-        ) : null}
       </View>
       <View style={styles.inputView}>
         <Controller
@@ -66,13 +64,11 @@ function SignUp(): React.JSX.Element {
               label="Enter Email"
               onChangeText={onChange}
               error={!!errors.email?.message}
+              errorMsg={errors.email?.message?.toString() ?? ''}
             />
           )}
           name="email"
         />
-        {errors.email?.message ? (
-          <Text>{errors.email?.message.toString()}</Text>
-        ) : null}
       </View>
       <View style={styles.inputView}>
         <Controller
@@ -94,13 +90,11 @@ function SignUp(): React.JSX.Element {
               label="Enter Username"
               onChangeText={onChange}
               error={!!errors.username?.message}
+              errorMsg={errors.username?.message?.toString() ?? ''}
             />
           )}
           name="username"
         />
-        {errors.username?.message ? (
-          <Text>{errors.username?.message.toString()}</Text>
-        ) : null}
       </View>
       <View style={styles.inputView}>
         <Controller
@@ -123,15 +117,13 @@ function SignUp(): React.JSX.Element {
               value={value}
               label="Enter Password"
               onChangeText={onChange}
-              error={!!errors.password?.message}
               secureTextEntry
+              error={!!errors.password?.message}
+              errorMsg={errors.password?.message?.toString() ?? ''}
             />
           )}
           name="password"
         />
-        {errors.password?.message ? (
-          <Text>{errors.password?.message.toString()}</Text>
-        ) : null}
       </View>
       <Button
         mode="contained"

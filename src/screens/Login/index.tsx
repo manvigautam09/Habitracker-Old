@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Text} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {StyleSheet, View} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
@@ -38,13 +38,11 @@ function Login(): React.JSX.Element {
               onChangeText={field.onChange}
               label="Enter Email"
               error={!!errors.email?.message}
+              errorMsg={errors.email?.message?.toString() ?? ''}
             />
           )}
           name="email"
         />
-        {errors.email?.message ? (
-          <Text>{errors.email?.message.toString()}</Text>
-        ) : null}
       </View>
       <View style={styles.inputView}>
         <Controller
@@ -63,13 +61,11 @@ function Login(): React.JSX.Element {
               onChangeText={field.onChange}
               secureTextEntry
               error={!!errors.password?.message}
+              errorMsg={errors.password?.message?.toString() ?? ''}
             />
           )}
           name="password"
         />
-        {errors.password?.message ? (
-          <Text>{errors.password?.message.toString()}</Text>
-        ) : null}
       </View>
 
       <Button

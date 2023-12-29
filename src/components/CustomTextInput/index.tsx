@@ -1,16 +1,19 @@
 import React, {ComponentProps} from 'react';
+import {FieldError} from 'react-hook-form';
 import {StyleSheet, View} from 'react-native';
 import {Text, TextInput} from 'react-native-paper';
 
 interface CustomTextInputProps extends ComponentProps<typeof TextInput> {
   label?: string;
   value: string;
+  errorMsg?: FieldError['message'];
   onChangeText: (text: string) => void;
 }
 
 const CustomTextInput: React.FC<CustomTextInputProps> = ({
   label,
   value,
+  errorMsg,
   onChangeText,
   ...props
 }) => {
@@ -23,6 +26,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
         style={styles.input}
         {...props}
       />
+      {errorMsg ? <Text>{errorMsg}</Text> : null}
     </View>
   );
 };
