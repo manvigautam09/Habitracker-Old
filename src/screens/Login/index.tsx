@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from 'react-native-paper';
 import {StyleSheet, View} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
+import {useMutation} from '@tanstack/react-query';
 import {useNavigation} from '@react-navigation/native';
 
 import {
@@ -20,8 +21,29 @@ function Login(): React.JSX.Element {
     formState: {errors},
   } = useForm();
 
+  const loginUser = async (data: any) => {
+    // Perform your registration logic here
+    // For example, make an API call to register the user
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Registration failed');
+    }
+
+    // Return the registered user data
+    return response.json();
+  };
+  const loginMutation = useMutation(loginUser);
+
   const onSubmit = (data: any) => {
     console.log('### data', data);
+    loginMutation.mutate(data);
   };
 
   return (
