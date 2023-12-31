@@ -39,6 +39,7 @@ function Login(): React.JSX.Element {
     // Return the registered user data
     return response.json();
   };
+
   const loginMutation = useMutation(loginUser);
 
   const onSubmit = (data: any) => {
