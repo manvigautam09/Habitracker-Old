@@ -41,6 +41,7 @@ function SignUp(): React.JSX.Element {
     // Return the registered user data
     return response.json();
   };
+
   const {mutate: register, isLoading} = useMutation(registerUser);
   const onSubmit = (data: any) => {
     console.log('### data', data);
